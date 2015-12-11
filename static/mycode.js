@@ -1,16 +1,20 @@
 
 
+//adds n percentage points to the hunger progress bar
 var updateHunger = function updateHunger(n) {
     newPercent = getHunger() + n + '%';
     $("#hunger")[0].style.width = newPercent;
     $("#hunger").text(newPercent);    
 }
 
+//returns the value of the hunger progress bar
 var getHunger = function getHunger(){
     var h = $("#hunger")[0].style.width;
     return parseFloat(h);
 }
 
+//changes temp based on location
+//calls feels()
 var temp = function temp(location){
     $('#loc').text(location);
     $.get("/temp", {city:location}, function(d){
@@ -18,7 +22,7 @@ var temp = function temp(location){
         feels(d);});
 }
 
-
+//Changes how the pet is feeling based on hunger and temperature
 var feels = function feels(temp){
     h = getHunger();
     if (h < 50){
@@ -34,6 +38,19 @@ var feels = function feels(temp){
     }
 }
 
-temp("New York");	
-console.log(getHunger());
-updateHunger(5)
+locButtonCallback = function(e){
+    newCity = $("#newLoc").val();
+    temp(newCity);
+    $("#newLoc").val("");
+};
+
+//updates the Temperature and Hunger levels
+var updateEverything = function updateEverything(){
+    loc = $('#loc').text();
+    temp(loc);
+    updateHunger(-1);
+}
+
+var myInterval;
+myInterval = setInterval(updateEverything, 5000);            
+
