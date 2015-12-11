@@ -5,11 +5,16 @@ var updateHunger = function updateHunger(n) {
     newPercent = getHunger() + n + '%';
     $("#hunger")[0].style.width = newPercent;
     $("#hunger").text(newPercent);
-    if ((getHunger() + n)<=50) {
+    if ((getHunger() + n)<=50 && (getHunger() + n)>=25) {
         $("#bubble").attr('src', 'static/speech.png')
+    }
+    if ((getHunger()+ n)<25) {
+        $("#pet").attr('src', 'static/sadcat.gif')
+        $("#bubble").attr('src', '')
     }
     else {
         $("#bubble").attr('src', '')
+        $("#pet").attr('src', 'static/cat.png')
     }    
 }
 
@@ -58,7 +63,7 @@ var updateEverything = function updateEverything(){
 }
 
 var myInterval;
-myInterval = setInterval(updateEverything, 3000);            
+myInterval = setInterval(updateEverything, 500);            
 
 feedPet = function(){
     if (getHunger() <= 95) {
