@@ -3,7 +3,7 @@ import weather
 
 app = Flask(__name__)
 
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/", methods=['GET','POST'])
 @app.route("/home")
 def home():
 	if request.method == "POST":
