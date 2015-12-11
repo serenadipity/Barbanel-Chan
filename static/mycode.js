@@ -4,7 +4,13 @@
 var updateHunger = function updateHunger(n) {
     newPercent = getHunger() + n + '%';
     $("#hunger")[0].style.width = newPercent;
-    $("#hunger").text(newPercent);    
+    $("#hunger").text(newPercent);
+    if ((getHunger() + n)<=50) {
+        $("#bubble").attr('src', 'static/speech.png')
+    }
+    else {
+        $("#bubble").attr('src', '')
+    }    
 }
 
 //returns the value of the hunger progress bar
@@ -52,5 +58,14 @@ var updateEverything = function updateEverything(){
 }
 
 var myInterval;
-myInterval = setInterval(updateEverything, 5000);            
+myInterval = setInterval(updateEverything, 3000);            
 
+feedPet = function(){
+    if (getHunger() <= 95) {
+        updateHunger(5);
+    }
+    else {
+        diff = 100 - getHunger();
+        updateHunger(diff);
+    }
+}
