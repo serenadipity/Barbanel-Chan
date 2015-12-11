@@ -2,13 +2,21 @@
 
 {% block contents %}
 <div class="container">
+
 	<center>
   <img src="static/cat.png">
   </center>
   <div class="absolute">
     <img src="" id="bubble">
   </div>
-  <center><button type="button" class="btn btn-success" onclick="feedPet()"><b>Click to feed the cat!</b></button></center>
+  <center>
+  <div class="input-group">
+    <form action="" method="POST">
+      <input type="text" name="name" class="form-control" placeholder="Name your pet!"></input> 
+    </form>
+  </div>
+  <br>
+  <button type="button" class="btn btn-success" onclick="feedPet()"><b>Click to feed the cat!</b></button></center>
   <br>
 	<table class="table">
 		<thead><tr><th>{{name}}'s Status</th></tr></thead>

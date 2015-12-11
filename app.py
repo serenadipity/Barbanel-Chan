@@ -3,11 +3,14 @@ import weather
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 @app.route("/home")
 def home():
-        
-	return render_template("home.html", name = "Name")
+	if request.method == "POST":
+		n = request.form['name']        
+		return render_template("home.html", name = n)
+	else:
+		return render_template("home.html", name = "Name")
 
 @app.route("/temp")
 def temp():
