@@ -5,17 +5,19 @@ var updateHunger = function updateHunger(n) {
     newPercent = getHunger() + n + '%';
     $("#hunger")[0].style.width = newPercent;
     $("#hunger").text(newPercent);
-    if ((getHunger() + n)<=50 && (getHunger() + n)>=25) {
-        $("#bubble").attr('src', 'static/speech.png')
-    }
-    if ((getHunger()+ n)<25) {
-        $("#pet").attr('src', 'static/sadcat.gif')
-        $("#bubble").attr('src', '')
+    if ((getHunger()<=50) && (getHunger()>=25)) {
+        $("#bubble").attr('src', 'static/speech.png');
+	console.log("hungry");
+    } 
+    else if (getHunger()<25) {
+         $("#pet").attr('src', 'static/sadcat.gif');
+         $("#bubble").attr('src', '');
     }
     else {
-        $("#bubble").attr('src', '')
-        $("#pet").attr('src', 'static/cat.png')
-    }    
+        $("#bubble").attr('src', '');
+        $("#pet").attr('src', 'static/cat.png');
+    } 
+    
 }
 
 //returns the value of the hunger progress bar
@@ -74,3 +76,5 @@ feedPet = function(){
         updateHunger(diff);
     }
 }
+
+updateHunger(-40);
